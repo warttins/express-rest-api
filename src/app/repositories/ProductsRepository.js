@@ -6,6 +6,13 @@ class ProductsRepository {
       resolve(products);
     });
   }
+
+  static findById(id) {
+    return new Promise((resolve) => {
+      const filteredProduct = products.find((product) => product.id === id);
+      resolve(filteredProduct);
+    });
+  }
 }
 
 module.exports = ProductsRepository;

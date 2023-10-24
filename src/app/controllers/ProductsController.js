@@ -7,9 +7,19 @@ class ProductsController {
     response.json(products);
   }
 
-  // show() {
-  //   // Obter um registro
-  // }
+  static async show(request, response) {
+    // Obter um registro
+    const { id } = request.params;
+    const product = await ProductsRepository.findById(id);
+
+    const productNotFound = !product;
+
+    if (productNotFound) {
+      return response.status(404).json({ message: 'Product not found.' });
+    }
+
+    return response.json(product);
+  }
 
   // store() {
   //   // Criar novo registro

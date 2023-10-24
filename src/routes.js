@@ -5,5 +5,6 @@ const productsRoute = express.Router();
 
 // Products routes
 productsRoute.get('/', ProductsController.index);
+productsRoute.get('/:id', ProductsController.show);
 
 module.exports = { productsRoute };
