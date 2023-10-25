@@ -1,4 +1,4 @@
-const products = require('../../mocks/products');
+let products = require('../../mocks/products');
 
 class ProductsRepository {
   static findAll() {
@@ -11,6 +11,14 @@ class ProductsRepository {
     return new Promise((resolve) => {
       const filteredProduct = products.find((product) => product.id === id);
       resolve(filteredProduct);
+    });
+  }
+
+  static delete(id) {
+    return new Promise((resolve) => {
+      const newProductsList = products.filter((product) => product.id !== id);
+      products = newProductsList;
+      resolve();
     });
   }
 }

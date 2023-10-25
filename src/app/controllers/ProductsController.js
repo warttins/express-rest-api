@@ -29,9 +29,21 @@ class ProductsController {
   //   // Editar um registro
   // }
 
-  // delete() {
-  //   // Deltar um registro
-  // }
+  static async delete(request, response) {
+    // Deletar um registro
+    const { id } = request.params;
+    const product = await ProductsRepository.findById(id);
+
+    const productNotFound = !product;
+
+    if (productNotFound) {
+      return response.status(404).json({ message: 'Product not found.' });
+    }
+
+    await ProductsRepository.delete(id);
+
+    return response.sendStatus(204);
+  }
 }
 
 module.exports = ProductsController;
